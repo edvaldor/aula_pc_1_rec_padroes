@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reconhecimento de Padrões - UNIPAR</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      color: #000;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    .slide {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 30px;
+      height: 100vh;
+      font-size: 2em;
+      box-sizing: border-box;
+    }
+    .slide.active {
+      display: flex;
+    }
+    h1, h2 {
+      font-size: 2.2em;
+    }
+    p, li {
+      font-size: 1em;
+    }
+    ul {
+      text-align: left;
+      max-width: 800px;
+    }
+    .qrcode {
+      margin-top: 20px;
+      width: 800px;
+      height: 800px;
+      border: 2px dashed #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6em;
+    }
+    #navigator {
+      position: fixed;
+      bottom: 10px;
+      right: 20px;
+      font-size: 0.8em;
+      color: #000;
+    }
+    #navigator button {
+      padding: 4px 10px;
+      margin-left: 5px;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide active"><h1>Reconhecimento de Padrões</h1><p>Pilar do Pensamento Computacional</p><p>Prof. Edvaldo Rodrigues<br/>ADS – 1º Período</p><p><strong>UNIPAR</strong></p></div>
+  <div class="slide"><h2>O que vamos estudar hoje</h2><ul><li>Entender o que é reconhecimento de padrões</li><li>Ver exemplos no dia a dia e na computação</li><li>Aplicar o conceito na resolução de problemas</li></ul></div>
+  <div class="slide"><h2>Definição</h2><p>Reconhecimento de padrões é a habilidade de:</p><p><strong>Identificar similaridades, repetições ou regularidades em dados, situações ou problemas.</strong></p></div>
+  <div class="slide"><h2>Exemplos do dia a dia</h2><ul><li>Sinal da internet cai sempre às 18h</li><li>Receitas de cozinha com sequência repetitiva</li><li>Senhas seguras seguem padrões mistos</li></ul></div>
+  <div class="slide"><h2>Exemplos na Computação</h2><ul><li>Corretores automáticos (digitação)</li><li>Antivírus identificam padrões de malware</li><li>Reconhecimento facial, de voz, comportamental</li><li>Recomendações de filmes ou produtos</li></ul></div>
+  <div class="slide"><h2>Exemplo prático: Tabuada do 5</h2><p>5, 10, 15, 20, 25...</p><p>Padrão: soma de 5 em 5</p></div>
+  <div class="slide"><h2>Por que reconhecer padrões?</h2><ul><li>Prever comportamentos</li><li>Criar soluções genéricas</li><li>Facilitar automatizações</li><li>Otimizar algoritmos</li></ul></div>
+  <div class="slide"><h2>Atividade 1 (Individual)</h2><p>Acesse o formulário:</p><p><strong>https://forms.gle/6sa3bMLxRNigckcQ8</strong></p><div class="qrcode"><img src="pc-aula1-atv-1.png"></div></div>
+  <div class="slide"><h2>Atividade 2 (Em Grupo)</h2><p>Acesse o formulário:</p><p><strong>https://forms.gle/CJoaBqrLCwERaHeZA</strong></p><div class="qrcode"><img src="pc-aula1-atv-2.png"></div></div>
+  <div class="slide"><h2>Conclusão</h2><ul><li>Reconhecer padrões = pensar como programador</li><li>Padrões estão em tudo</li><li>Próxima aula: Abstração de problemas</li></ul></div>
+
+  <div id="navigator">
+    <span id="counter">Slide 1</span>
+    <button onclick="prevSlide()">◀</button>
+    <button onclick="nextSlide()">▶</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+    let current = 0;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[index].classList.add('active');
+      counter.textContent = `Slide ${index + 1} de ${slides.length}`;
+    }
+
+    function nextSlide() {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    }
+
+    function prevSlide() {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') nextSlide();
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+    });
+
+    showSlide(current);
+  </script>
+</body>
+</html>
